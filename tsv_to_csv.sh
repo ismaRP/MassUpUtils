@@ -43,12 +43,12 @@ if [ "$reverse" = true ]; then
   for f in $inputDir/* ; do
     of="$(echo $f | cut -d "/" -f3)"
     cat $f | cut -d "," -f1 | paste - <(cat $f | cut -d "," -f2) > "$outputDir/$of"
-    rename 's/\.(csv)/\.tsv/' "$outputDir/*"
+    rename 's/\.(csv)/\.tsv/' "$outputDir/$of"
   done
 else
   for f in $inputDir/* ; do
     of="$(echo $f | cut -d "/" -f3)"
     cat $f | cut -f1 | paste -d "," - <(cat $f | cut -f2) > "$outputDir/$of"
-    rename 's/\.(txt|tsv)/\.csv/' "$outputDir/*"
+    rename 's/\.(txt|tsv)/\.csv/' "$outputDir/$of"
   done
 fi
